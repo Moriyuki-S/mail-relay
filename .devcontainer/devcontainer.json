@@ -48,7 +48,8 @@
 		"vscode": {
 			"extensions": [
 				"biomejs.biome",
-				"vitest.explorer"
+				"vitest.explorer",
+				"GitHub.vscode-github-actions"
 			]
 		}
 	}
