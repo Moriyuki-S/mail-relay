@@ -1,0 +1,29 @@
+services:
+  mail-relay:
+    build:
+      context: ..
+      dockerfile: build/Dockerfile
+      args:
+        NODE_VERSION: 25
+    init: true
+    user: node
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace:cached
+      - npm-cache:/tmp/npm-cache
+    ports:
+      - "8787:8787"
+    environment:
+      NODE_ENV: development
+    develop:
+      watch:
+        - action: rebuild
+          path: package.json
+        - action: sync
+          path: .
+          target: ./app
+          ignore:
+            - node_modules/
+
+volumes:
+  npm-cache:
